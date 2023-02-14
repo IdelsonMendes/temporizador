@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Temporizador</title>
+    <link rel="stylesheet" href="">
+	
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		background-color: #1d1d1d;
+	}
+	
+	.container {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 40px;
+	}
+
+	.container .box {
+		position: relative;
+		width: 300px;
+		height: 400px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background: #2d2d2d;
+		box-shadow: 6px 6px 18px rgba(0,0,0,.6);
+		border-radius: 50px;
+	}
+	
+	.container .box .percent {
+		position: relative;
+		width: 150px;
+		height: 150px;
+	}
+	
+	
+	.container .box .percent svg {
+		position: relative;
+		width: 150px;
+		height: 150px;
+		transform: rotate(270deg);
+	}
+	
+	.container .box .percent svg circle {
+		width: 100%;
+		height: 100%;
+		fill: none;
+		stroke-width: 10;
+		stroke: #fff;
+		transform: translate(5px, 5px);
+
+	}
+	
+	.container .box .percent svg circle:nth-child(1) {
+		/*stroke-dashoffset: 0;*/
+		stroke: gray
+	}
+	
+	.box .percent svg circle:nth-child(2) {
+		stroke-dasharray: 440;
+		stroke-dashoffset: calc(440 - (440 * var(--num)) / 60);
+		stroke: limegreen;
+		opacity: 0;
+		animation: fadeIn 2s linear forwards;
+		animation-delay: 2s;
+	}
+	
+	#circle-progress-hour {
+		stroke: red;
+	}
+	
+	#circle-progress-minute {
+		stroke: royalblue;
+	}
+	
+	#circle-progress-second {
+		stroke: yellow;
+	}
+	
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	
+	.dot {
+		position: absolute;
+		inset: 5px;
+		z-index: 10;
+		transform: rotate(calc(6deg * var(--num)));
+		animation: fadeDot 2s linear forwards;	
+	}
+	
+	@keyframes fadeDot {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform:  rotate(calc(6deg * var(--num)));
+		}
+	}
+	
+	
+	.dot-before {
+		content: "";
+		position: absolute;
+		top: -10px;
+		left: 70px;
+		transform: translateX(-50%);		
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: limegreen;
+		box-shadow: 0 0 10px limegreen, 0 0 30px limegreen;		
+	}
+	
+	#dot-before-hour {
+		background: red;
+		box-shadow: 0 0 10px red, 0 0 30px red;	
+	}
+	
+	#dot-before-minute {
+		background: royalblue;
+		box-shadow: 0 0 10px royalblue, 0 0 30px royalblue;	
+	}
+	
+	#dot-before-second {
+		background: yellow;
+		box-shadow: 0 0 10px yellow, 0 0 30px yellow;	
+	}
+	
+	.box .percent .number {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		
+	}
+	
+	.box .percent .number h2 {
+		font-size: 48px
+	}
+	
+	#title-percent-hour, #hour {
+		color: red;
+	}
+	
+	#title-percent-minute, #minute{
+		color: royalblue;
+	}
+	
+	#title-percent-second, #second {
+		color: yellow;
+	}
+	
+	.box .percent .number h2 span { 
+		font-size: 24px
+	}
+	
+	.box .text {
+		padding: 50px 0 0;
+		color: #999;
+		font-weight: 70;
+		letter-spacing: 10px;
+	}
+	
+
+	.temporizador {
+		color: white;
+		font-size: 3em;
+	}
+
+	button {
+		margin: 1em;
+		background-color: transparent;
+		border: none;
+		padding: 0.5em 2em;
+		border-radius: 1em;
+		color: white;
+	}
+
+
+	#start {
+		background-color: #2d2d2d;
+	}
+
+	#pause {
+		background-color: #2d2d2d;
+	}
+
+	#reset {
+		background-color: #2d2d2d;
+	}
+	
+	</style>
+	
+</head>
+
+<body>
+	<div class="container">
+	
+		<div class="box">
+			<div class="percent" id="percent-hour" style="--num: 0;">
+				<div id="dot" class="dot"><div id="dot-before-hour" class="dot-before"></div></div>
+				<svg>
+					<circle id="circle-base-hour" class="circle-base" cx="70" cy="70" r="70"></circle>
+					<circle id="circle-progress-hour" class="circle-progress" cx="70" cy="70" r="70"></circle>
+				</svg>
+				<div class="number">
+					<h2 id="title-percent-hour" class="title-percent">0<span> hrs</span></h2>
+				</div>
+			</div>
+			<h2 class="text" id="text-hour">Horas</h2>
+			<div class="temporizador">
+				<span class="display-remain-time" id='hour'>00</span> 
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="percent" id="percent-minute" style="--num: 0;">
+				<div id="dot" class="dot"><div id="dot-before-minute" class="dot-before"></div></div>
+				<svg>
+					<circle id="circle-base-minute" class="circle-base" cx="70" cy="70" r="70"></circle>
+					<circle id="circle-progress-minute" class="circle-progress" cx="70" cy="70" r="70"></circle>
+				</svg>
+				<div class="number">
+					<h2 id="title-percent-minute" class="title-percent">0<span> mins</span></h2>
+				</div>
+			</div>
+			<h2 class="text" id="text-minute">Minutos</h2>
+			<div class="temporizador">
+				<span class="display-remain-time" id='minute'>00</span>
+			</div>
+		</div>
+		
+		<div class="box">
+			<div class="percent" id="percent-second" style="--num: 0;">
+				<div id="dot" class="dot"><div id="dot-before-second" class="dot-before"></div></div>
+				<svg>
+					<circle id="circle-base-second" class="circle-base" cx="70" cy="70" r="70"></circle>
+					<circle id="circle-progress-second" class="circle-progress" cx="70" cy="70" r="70"></circle>
+				</svg>
+				<div class="number">
+					<h2 id="title-percent-second" class="title-percent">0
+                         <span> segs</span></h2>
+				</div>
+			</div>
+			<h2 class="text" id="text-second">Segundos</h2>
+			<div class="temporizador">
+				<span class="display-remain-time" id='second'>00</span>
+			</div>
+		</div>
+					
+		<form name="form_main">				
+			<button type="button" name="start" class="button" id="start">Iniciar</button>
+			<button type="button" name="pause" class="button" id="pause">Pausar</button>
+			<button type="button" name="reset" class="button" id="reset">Resetar</button>				
+		</form>
+		
+	</div>
+	
+	<script>
+	
+		"use strict";
+	
+	let hour = 50;
+	let minute = 29;
+	let second = 50;
+	let millisecond = 0;
+	
+	let cron;
+	
+	
+	document.form_main.start.onclick = () => 
+	start();
+	document.form_main.pause.onclick = () => 
+	pause();
+	document.form_main.reset.onclick = () => 
+	reset();	
+	
+	function start() {
+		pause();
+		cron = setInterval(() => { timer(); }, 10);
+	}
+	
+	function pause () {
+		clearInterval(cron);
+	}
+	
+	
+	function timer() {
+		
+		if ((millisecond += 10) == 1000) {
+			millisecond = 0;
+			second++;
+			percentSecond.style = `--num: ${second}`;
+			titleSecond.innerHTML = `${second}<span> segs</span>`;
+		} 
+
+		
+		if (second == 60) {
+			second = 0;
+			minute++;
+			percentMinute.style = `--num: ${minute}`;
+			titleMinute.innerHTML = `${minute}<span> mins</span>`;
+		}
+		
+		if (minute == 60) {
+			minute = 0;
+			hour++;
+			percentHour.style = `--num: ${hour}`;
+			titleHour.innerHTML = `${hour}<span> hrs</span>`;
+		}
+		
+		document.getElementById('hour').innerText = returnData(hour);
+		document.getElementById('minute').innerText = returnData(minute);
+		document.getElementById('second').innerText = returnData(second);
+		//document.getElementById('millisecond').innerText = returnData(millisecond);		
+	
+		function returnData (input) {
+			return input > 10 ? input : `0${input}`
+		
+		}
+		
+		percentHour.style = `--num: ${hour}`;
+		titleHour.innerHTML = `${hour}<span> hrs</span>`;
+		
+		percentMinute.style = `--num: ${minute}`;
+		titleMinute.innerHTML = `${minute}<span> mins</span>`;
+		
+		percentSecond.style = `--num: ${second}`;
+		titleSecond.innerHTML = `${second}<span> segs</span>`;
+		
+	}
+	
+
+	function reset() {
+		hour = 0;
+		minute = 0;
+		second = 0;
+		millisecond = 0;
+		
+		document.getElementById('hour').innerHTML = '00';
+		document.getElementById('minute').innerHTML = '00';
+		document.getElementById('second').innerHTML = '00';		
+		//document.getElementById('millisecond').innerHTML = '000';
+
+		percentHour.style = `--num: 0`;
+		titleHour.innerHTML = `0<span> hrs</span>`;
+		
+		percentMinute.style = `--num: 0`;
+		titleMinute.innerHTML = `0<span> mins</span>`;
+
+		percentSecond.style = `--num: 0`;
+		titleSecond.innerHTML = `0<span> segs</span>`;
+		
+		pause();
+	}
+	
+		// Barra de progresso
+	
+	let progressBarHour = document.getElementById('circle-progress-hour');
+	let pointerHour = document.getElementById('dot-before-hour');
+	let percentHour = document.getElementById('percent-hour');
+	let titleHour = document.getElementById('title-percent-hour');	
+	
+	let progressBarMinute = document.getElementById('circle-progress-minute');
+	let pointerMinnute = document.getElementById('dot-before-minute');
+	let percentMinute = document.getElementById('percent-minute');
+	let titleMinute = document.getElementById('title-percent-minute');	
+	
+	let progressBarSecond = document.getElementById('circle-progress-second');
+	let pointerSecond = document.getElementById('dot-before-second');
+	let percentSecond = document.getElementById('percent-second');
+	let titleSecond = document.getElementById('title-percent-second');	
+	
+
+	
+	
+	//let po = document.getElementById('dot');
+	
+	
+	</script>
+	
+</body>
+
+</html>
+
