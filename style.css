@@ -1,0 +1,209 @@
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		background-color: #1d1d1d;
+	}
+	
+	.container {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 40px;
+	}
+
+	.container .box {
+		position: relative;
+		width: 300px;
+		height: 400px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background: #2d2d2d;
+		box-shadow: 6px 6px 18px rgba(0,0,0,.6);
+		border-radius: 50px;
+	}
+	
+	.container .box .percent {
+		position: relative;
+		width: 150px;
+		height: 150px;
+	}
+	
+	
+	.container .box .percent svg {
+		position: relative;
+		width: 150px;
+		height: 150px;
+		transform: rotate(270deg);
+	}
+	
+	.container .box .percent svg circle {
+		width: 100%;
+		height: 100%;
+		fill: none;
+		stroke-width: 10;
+		stroke: #fff;
+		transform: translate(5px, 5px);
+
+	}
+	
+	.container .box .percent svg circle:nth-child(1) {
+		/*stroke-dashoffset: 0;*/
+		stroke: gray
+	}
+	
+	.box .percent svg circle:nth-child(2) {
+		stroke-dasharray: 440;
+		stroke-dashoffset: calc(440 - (440 * var(--num)) / 60);
+		stroke: limegreen;
+		opacity: 0;
+		animation: fadeIn 2s linear forwards;
+		animation-delay: 2s;
+	}
+	
+	#circle-progress-hour {
+		stroke: red;
+	}
+	
+	#circle-progress-minute {
+		stroke: royalblue;
+	}
+	
+	#circle-progress-second {
+		stroke: yellow;
+	}
+	
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	
+	.dot {
+		position: absolute;
+		inset: 5px;
+		z-index: 10;
+		transform: rotate(calc(6deg * var(--num)));
+		animation: fadeDot 2s linear forwards;	
+	}
+	
+	@keyframes fadeDot {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform:  rotate(calc(6deg * var(--num)));
+		}
+	}
+	
+	
+	.dot-before {
+		content: "";
+		position: absolute;
+		top: -10px;
+		left: 70px;
+		transform: translateX(-50%);		
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: limegreen;
+		box-shadow: 0 0 10px limegreen, 0 0 30px limegreen;		
+	}
+	
+	#dot-before-hour {
+		background: red;
+		box-shadow: 0 0 10px red, 0 0 30px red;	
+	}
+	
+	#dot-before-minute {
+		background: royalblue;
+		box-shadow: 0 0 10px royalblue, 0 0 30px royalblue;	
+	}
+	
+	#dot-before-second {
+		background: yellow;
+		box-shadow: 0 0 10px yellow, 0 0 30px yellow;	
+	}
+	
+	.box .percent .number {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		
+	}
+	
+	.box .percent .number h2 {
+		font-size: 48px
+	}
+	
+	#title-percent-hour, #hour {
+		color: red;
+	}
+	
+	#title-percent-minute, #minute{
+		color: royalblue;
+	}
+	
+	#title-percent-second, #second {
+		color: yellow;
+	}
+	
+	.box .percent .number h2 span { 
+		font-size: 24px
+	}
+	
+	.box .text {
+		padding: 50px 0 0;
+		color: #999;
+		font-weight: 70;
+		letter-spacing: 10px;
+	}
+	
+
+	.temporizador {
+		color: white;
+		font-size: 3em;
+	}
+
+	button {
+		margin: 1em;
+		background-color: transparent;
+		border: none;
+		padding: 0.5em 2em;
+		border-radius: 1em;
+		color: white;
+	}
+
+
+	#start {
+		background-color: #2d2d2d;
+	}
+
+	#pause {
+		background-color: #2d2d2d;
+	}
+
+	#reset {
+		background-color: #2d2d2d;
+	}
+	
