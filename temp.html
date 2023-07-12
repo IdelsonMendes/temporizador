@@ -2,78 +2,88 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Temporizador</title>
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Temporizador</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 	<div class="container">
-	
-		<div class="box">
-			<div class="percent" id="percent-hour" style="--num: 0;">
-				<div id="dot" class="dot"><div id="dot-before-hour" class="dot-before"></div></div>
-				<svg>
-					<circle id="circle-base-hour" class="circle-base" cx="70" cy="70" r="70"></circle>
-					<circle id="circle-progress-hour" class="circle-progress" cx="70" cy="70" r="70"></circle>
-				</svg>
-				<div class="number">
-					<h2 id="title-percent-hour" class="title-percent">0<span> hrs</span></h2>
+
+		<div class="container-box">
+
+			<div class="box">
+				<div class="percent" id="percent-hour" style="--num: 0;">
+					<div id="dot" class="dot">
+						<div id="dot-before-hour" class="dot-before"></div>
+					</div>
+					<svg>
+						<circle id="circle-base-hour" class="circle-base" cx="70" cy="70" r="70"></circle>
+						<circle id="circle-progress-hour" class="circle-progress" cx="70" cy="70" r="70"></circle>
+					</svg>
+					<div class="number">
+						<h2 id="title-percent-hour" class="title-percent">0<span> hrs</span></h2>
+					</div>
+				</div>
+				<h2 class="text" id="text-hour">Horas</h2>
+				<div class="temporizador">
+					<span class="display-remain-time" id='hour'>00</span>
 				</div>
 			</div>
-			<h2 class="text" id="text-hour">Horas</h2>
-			<div class="temporizador">
-				<span class="display-remain-time" id='hour'>00</span> 
-			</div>
-		</div>
-		
-		<div class="box">
-			<div class="percent" id="percent-minute" style="--num: 0;">
-				<div id="dot" class="dot"><div id="dot-before-minute" class="dot-before"></div></div>
-				<svg>
-					<circle id="circle-base-minute" class="circle-base" cx="70" cy="70" r="70"></circle>
-					<circle id="circle-progress-minute" class="circle-progress" cx="70" cy="70" r="70"></circle>
-				</svg>
-				<div class="number">
-					<h2 id="title-percent-minute" class="title-percent">0<span> mins</span></h2>
+
+			<div class="box">
+				<div class="percent" id="percent-minute" style="--num: 0;">
+					<div id="dot" class="dot">
+						<div id="dot-before-minute" class="dot-before"></div>
+					</div>
+					<svg>
+						<circle id="circle-base-minute" class="circle-base" cx="70" cy="70" r="70"></circle>
+						<circle id="circle-progress-minute" class="circle-progress" cx="70" cy="70" r="70"></circle>
+					</svg>
+					<div class="number">
+						<h2 id="title-percent-minute" class="title-percent">0<span> mins</span></h2>
+					</div>
+				</div>
+				<h2 class="text" id="text-minute">Minutos</h2>
+				<div class="temporizador">
+					<span class="display-remain-time" id='minute'>00</span>
 				</div>
 			</div>
-			<h2 class="text" id="text-minute">Minutos</h2>
-			<div class="temporizador">
-				<span class="display-remain-time" id='minute'>00</span>
-			</div>
-		</div>
-		
-		<div class="box">
-			<div class="percent" id="percent-second" style="--num: 0;">
-				<div id="dot" class="dot"><div id="dot-before-second" class="dot-before"></div></div>
-				<svg>
-					<circle id="circle-base-second" class="circle-base" cx="70" cy="70" r="70"></circle>
-					<circle id="circle-progress-second" class="circle-progress" cx="70" cy="70" r="70"></circle>
-				</svg>
-				<div class="number">
-					<h2 id="title-percent-second" class="title-percent">0
-                         <span> segs</span></h2>
+
+			<div class="box">
+				<div class="percent" id="percent-second" style="--num: 0;">
+					<div id="dot" class="dot">
+						<div id="dot-before-second" class="dot-before"></div>
+					</div>
+					<svg>
+						<circle id="circle-base-second" class="circle-base" cx="70" cy="70" r="70"></circle>
+						<circle id="circle-progress-second" class="circle-progress" cx="70" cy="70" r="70"></circle>
+					</svg>
+					<div class="number">
+						<h2 id="title-percent-second" class="title-percent">0
+							<span> segs</span>
+						</h2>
+					</div>
+				</div>
+				<h2 class="text" id="text-second">Segundos</h2>
+				<div class="temporizador">
+					<span class="display-remain-time" id='second'>00</span>
 				</div>
 			</div>
-			<h2 class="text" id="text-second">Segundos</h2>
-			<div class="temporizador">
-				<span class="display-remain-time" id='second'>00</span>
-			</div>
+
 		</div>
-					
-		<form name="form_main">				
+
+		<form name="form_main">
 			<button type="button" name="start" class="button" id="start">Iniciar</button>
 			<button type="button" name="pause" class="button" id="pause">Pausar</button>
-			<button type="button" name="reset" class="button" id="reset">Resetar</button>				
+			<button type="button" name="reset" class="button" id="reset">Resetar</button>
 		</form>
-		
+
 	</div>
-	
+
 	<script src='script.js'></script>
-	
+
 </body>
 
 </html>
-
