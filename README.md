@@ -2,6 +2,8 @@
 
 ##### O presente projeto visa a construção de um temporizador simples e intuitivo. 
 
+Teste a aplicação: https://idelsonmendes.github.io/temporizador/temp.html
+
 #
 Guia de Instalação: Para utilizar a aplicação, apenas baixe os arquivos e abra o arquivo "temp.html" com o navegador.
 #
